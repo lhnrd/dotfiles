@@ -44,4 +44,3 @@ export PROMPT_COMMAND="set_prompt;$PROMPT_COMMAND"
 
 export EDITOR="code"
 export VISUAL="code"
-export GITHUB_NPM_READ_TOKEN="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"

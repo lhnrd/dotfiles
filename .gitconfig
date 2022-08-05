@@ -5,6 +5,7 @@
   # Branchs
   b = branch
   bm = branch --merged
+  bmr = branch --merged --remote
   branch-name = !"git rev-parse --abbrev-ref HEAD"
   bn = branch-name
 
