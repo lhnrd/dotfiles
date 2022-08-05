@@ -23,15 +23,15 @@ done
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
 
+BREW_PREFIX=$(brew --prefix)
+
 # Add tab completion for many Bash commands
-if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
-  source "$(brew --prefix)/share/bash-completion/bash_completion";
-elif [ -f /etc/bash_completion ]; then
-  source /etc/bash_completion;
-fi;
+test -f /etc/bash_completion && . /etc/bash_completion
+test -f $BREW_PREFIX/etc/bash_completion && . $BREW_PREFIX/etc/bash_completion
+test -f $BREW_PREFIX/etc/profile.d/bash_completion.sh && . $BREW_PREFIX/etc/profile.d/bash_completion.sh
 
 # Git auto complete
-[ -f ~/.git-completion.bash ] && source ~/.git-completion.bash
+test -f ~/.git-completion.bash && . ~/.git-completion.bash
 
 # NPM Auto Completion
 type npm >/dev/null 2>&1 && . <(npm completion)
