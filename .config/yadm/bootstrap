@@ -6,7 +6,7 @@ system_type=$(uname -s)
 install_brew() {
   if ! command -v brew >/dev/null 2>&1; then
     echo "Installing homebrew"
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
   BREW_PREFIX=$(brew --prefix)
@@ -14,10 +14,14 @@ install_brew() {
   if [ -f "$HOME/.Brewfile" ]; then
     echo "Updating homebrew bundle"
     brew bundle --global
-  fi
 
-  # Symlink to installed coreutils
-  ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+    # Workaround to install dockutil
+    brew install jq
+    DLURL=$(curl --silent "https://api.github.com/repos/kcrawford/dockutil/releases/latest" | jq -r .assets[].browser_download_url | grep pkg)
+    curl -sL ${DLURL} -o /tmp/dockutil.pkg
+    sudo installer -pkg "/tmp/dockutil.pkg" -target /
+    rm /tmp/dockutil.pkg
+  fi
 
   # Switch to using brew-installed bash as default shell
   if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
@@ -36,7 +40,7 @@ install_brew() {
 configure_macos() {
   if [ -d "$HOME/.macos" ]; then
     echo "Configuring macOS"
-    # $HOME/.macos
+    $HOME/.macos
   fi
 }
 
@@ -45,6 +49,14 @@ configure_iterm() {
   if [ -d "$HOME/.iterm2" ]; then
     echo "Setting iTerm preference folder"
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
+  fi
+}
+
+# Configure Moom
+configure_moom() {
+  if [ -d "$HOME/.moom" ]; then
+    echo "Setting Moom preferences"
+    defaults import com.manytricks.Moom "$HOME/.moom/Moom.plist"
   fi
 }
 

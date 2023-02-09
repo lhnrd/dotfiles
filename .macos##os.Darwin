@@ -345,6 +345,20 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
+###############################################################################
+# Configure Dock                                                               #
+###############################################################################
+
+dockutil --remove all
+dockutil --add file:///System/Applications/Launchpad.app/
+dockutil --add file:///Applications/Firefox.app/
+dockutil --add file:///Applications/Google\ Chrome.app/
+dockutil --add file:///Applications/Cron.app/
+dockutil --add file:///Applications/Notion.app/
+dockutil --add file:///Applications/Notes.app/
+dockutil --add file:///Applications/Spotify.app/
+dockutil --add file:///Applications/Discord.app/
+dockutil --add file:///Applications/Slack.app/
 
 ###############################################################################
 # Kill affected applications                                                  #

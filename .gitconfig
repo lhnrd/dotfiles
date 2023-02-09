@@ -77,3 +77,5 @@
 [user]
   name = Lucas Rinaldi
   email = lucashrinaldi@gmail.com
+[init]
+	defaultBranch = main
