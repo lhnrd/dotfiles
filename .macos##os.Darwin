@@ -100,7 +100,7 @@ sudo systemsetup -settimezone "America/Sao_Paulo" > /dev/null
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 
 # Stop iTunes from responding to the keyboard media keys
-# launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 
 ###############################################################################
@@ -359,6 +359,8 @@ dockutil --add file:///Applications/Notes.app/
 dockutil --add file:///Applications/Spotify.app/
 dockutil --add file:///Applications/Discord.app/
 dockutil --add file:///Applications/Slack.app/
+dockutil --add '~' --view list --display stack --sort name --section others
+dockutil --add '~/.Trash' --section others
 
 ###############################################################################
 # Kill affected applications                                                  #
