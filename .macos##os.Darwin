@@ -84,14 +84,16 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 2
+defaults write NSGlobalDomain InitialKeyRepeat -int 25
 
 # Set language and text formats
 # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
 # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
-# defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-# defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
-# defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-# defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleLanguages -array "en-BR" "pt-BR"
+defaults write NSGlobalDomain AppleLocale -string "en_BR"
+defaults write NSGlobalDomain AppleTemperatureUnits -string "Celsius"
+defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
+defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
 sudo systemsetup -settimezone "America/Sao_Paulo" > /dev/null
@@ -129,14 +131,14 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 # Finder                                                                      #
 ###############################################################################
 
-# Set Desktop as the default location for new Finder windows
+# Set Home as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
-defaults write com.apple.finder NewWindowTarget -string "PfDe"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Desktop/"
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
-defaults write com.apple.finder ShowHardDrivesOnDesktop -bool true
+defaults write com.apple.finder ShowHardDrivesOnDesktop -bool false
 defaults write com.apple.finder ShowMountedServersOnDesktop -bool true
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool true
 
@@ -151,6 +153,9 @@ defaults write com.apple.finder ShowStatusBar -bool true
 
 # Finder: show path bar
 defaults write com.apple.finder ShowPathbar -bool true
+
+# Finder: hide recent tags
+defaults write com.apple.finder ShowRecentTags -bool false
 
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
@@ -353,12 +358,17 @@ dockutil --remove all
 dockutil --add file:///System/Applications/Launchpad.app/
 dockutil --add file:///Applications/Firefox.app/
 dockutil --add file:///Applications/Google\ Chrome.app/
+dockutil --add file:///Applications/Mail.app/
 dockutil --add file:///Applications/Cron.app/
+dockutil --add file:///Applications/Obsidian.app/
 dockutil --add file:///Applications/Notion.app/
 dockutil --add file:///Applications/Notes.app/
+dockutil --add file:///Applications/Reminders.app/
 dockutil --add file:///Applications/Spotify.app/
 dockutil --add file:///Applications/Discord.app/
 dockutil --add file:///Applications/Slack.app/
+dockutil --add file:///Applications/Visual\ Studio\ Code.app/
+dockutil --add file:///Applications/iTerm.app/
 dockutil --add '~' --view list --display stack --sort name --section others
 dockutil --add '~/.Trash' --section others
 

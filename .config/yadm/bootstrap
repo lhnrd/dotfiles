@@ -38,7 +38,7 @@ install_brew() {
 
 # Configure macOS
 configure_macos() {
-  if [ -d "$HOME/.macos" ]; then
+  if [ -a "$HOME/.macos" ]; then
     echo "Configuring macOS"
     $HOME/.macos
   fi
@@ -52,11 +52,11 @@ configure_iterm() {
   fi
 }
 
-# Configure Moom
-configure_moom() {
-  if [ -d "$HOME/.moom" ]; then
-    echo "Setting Moom preferences"
-    defaults import com.manytricks.Moom "$HOME/.moom/Moom.plist"
+# Load Fonts
+load_fonts() {
+  if [ -d "$HOME/.fonts" ]; then
+    echo "Loading fonts into the current user"
+    fd . ~/.fonts -e ttf | xargs -I _ cp _ "$HOME/Library/Fonts"
   fi
 }
 
@@ -64,4 +64,5 @@ if [ "$system_type" = "Darwin" ]; then
   install_brew
   configure_macos
   configure_iterm
+  load_fonts
 fi

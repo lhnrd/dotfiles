@@ -119,3 +119,4 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 
 # list open internet files and its ports
 alias listport="lsof -i"
+alias lg="lazygit"
