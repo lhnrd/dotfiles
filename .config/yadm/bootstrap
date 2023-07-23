@@ -75,6 +75,7 @@ configure_zsh() {
 configure_macos() {
   if [ -a "$HOME/.macos" ]; then
     echo "Configuring macOS"
+    chmod +x $HOME/.macos
     $HOME/.macos
   fi
 }
