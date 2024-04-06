@@ -7,24 +7,27 @@ brew "findutils"
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew "gnu-sed"
 
+# Install zsh shell
+brew "zsh"
+
 # Install a modern version of Bash.
-brew "bash"
-brew "bash-completion@2"
+# brew "bash"
+# brew "bash-completion@2"
 
 # Install GnuPG to enable PGP-signing commits.
 brew "gnupg"
 
 # Install more recent versions of some OS X tools.
-# brew "vim"
+# brew "neovim"
 brew "grep"
 brew "openssh"
 
-# Install some utilities
+# Install utilities
 brew "ack" # grep-like source code search tool
 brew "git"
 brew "lazygit"
 brew "git-lfs"
-brew "n"
+# brew "n"
 # brew "elixir"
 brew "rename"
 brew "tree"
@@ -59,7 +62,7 @@ cask "vlc"
 cask "firefox"
 cask "google-chrome"
 cask "google-drive"
-cask "cron"
+# cask "cron"
 cask "tomatobar"
 cask "1password"
 cask "lunar"

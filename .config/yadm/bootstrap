@@ -1,14 +1,34 @@
 #!/bin/sh
 
 system_type=$(uname -s)
+cpu_type=$(uname -m)
 
-# Install Homebrew and bundle
+
+###############################################################################
+# Bootstrap system                                                            #
+###############################################################################
+if [ "$system_type" = "Darwin" ]; then
+  install_brew
+  configure_macos
+  configure_iterm
+  configure_zsh
+  load_fonts
+fi
+
+# -------------------------------
+# Install Homebrew and Brewfile bundle (formulae and casks)
+# -------------------------------
 install_brew() {
   if ! command -v brew >/dev/null 2>&1; then
     echo "Installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
+  # Link Homebrew casks in `/Applications` rather than `~/Applications`
+  if [[ -f "`which brew`" ]]; then
+    export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+  fi
+  
   BREW_PREFIX=$(brew --prefix)
 
   if [ -f "$HOME/.Brewfile" ]; then
@@ -23,20 +43,29 @@ install_brew() {
     rm /tmp/dockutil.pkg
   fi
 
-  # Switch to using brew-installed bash as default shell
-  if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
-    echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
-    chsh -s "${BREW_PREFIX}/bin/bash";
-  fi
-
-  # Doctor
   brew doctor
-
-  # Remove outdated versions from the cellar
+  brew update
+  brew upgrade
   brew cleanup
 }
 
+# -------------------------------
+# Configure zsh
+# -------------------------------
+configure_zsh() {
+  # Set default shell as brew-installed zsh
+  if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
+    echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells;
+    chsh -s "${BREW_PREFIX}/bin/zsh";
+  fi
+
+  # Install oh-my-zsh
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+}
+
+# -------------------------------
 # Configure macOS
+# -------------------------------
 configure_macos() {
   if [ -a "$HOME/.macos" ]; then
     echo "Configuring macOS"
@@ -44,7 +73,9 @@ configure_macos() {
   fi
 }
 
+# -------------------------------
 # Configure iTerm
+# -------------------------------
 configure_iterm() {
   if [ -d "$HOME/.iterm2" ]; then
     echo "Setting iTerm preference folder"
@@ -52,17 +83,12 @@ configure_iterm() {
   fi
 }
 
-# Load Fonts
+# -------------------------------
+# Load fonts
+# -------------------------------
 load_fonts() {
   if [ -d "$HOME/.fonts" ]; then
     echo "Loading fonts into the current user"
     fd . ~/.fonts -e ttf | xargs -I _ cp _ "$HOME/Library/Fonts"
   fi
 }
-
-if [ "$system_type" = "Darwin" ]; then
-  install_brew
-  configure_macos
-  configure_iterm
-  load_fonts
-fi

@@ -1,15 +1,43 @@
-[alias]
-  a = add
-  ap = add -p
+[user]
+  name = Lucas Rinaldi
+  email = lucashrinaldi@gmail.com
 
-  # Branchs
+[core]
+  attributesfile = ~/.gitattributes
+  autocrlf = input
+  editor = code
+  excludesfile = ~/.gitignore_global
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+
+[pull]
+  rebase = true
+
+[push]
+  default = simple
+  recurseSubmodules = check
+
+[status]
+  submodulesummary = 1
+
+[init]
+	defaultBranch = main
+
+[alias]
+  # Aliases
+  aliases = !git config -l | grep alias | cut -c 7-
+
+  # Add
+  a = add --all
+  ap = add . -p
+
+  # Branch
   b = branch
   bm = branch --merged
   bmr = branch --merged --remote
   branch-name = !"git rev-parse --abbrev-ref HEAD"
   bn = branch-name
 
-  # Commits
+  # Commit
   c = commit
   ca = commit --amend
   cm = commit --message
@@ -18,64 +46,61 @@
   unc = reset HEAD~
   uns = reset HEAD --
 
-  # Configs
+  # Config
   cfg = config --global --edit
 
   # Cleanup
   cleanup-force-local = !"git branch | grep -v main | grep -v master | xargs git branch -D"
   cleanup-local-remote = !"git remote prune origin"
 
-  # Comment because these don't work anymore
-  # cleanup-local = !"git branch --merged | grep -v \"\\*\" | grep -v master | grep -v next | xargs -n 1 git branch -d"
-  # cleanup-remote = !"git branch --remote --merged | grep -v master | grep -v next | sed 's/origin\\///' | xargs -n 1 git push --delete origin"
-
-  # Checkouts
+  # Checkout
   co = checkout
+  cob = checkout -b
 
-  # Diffs
+  # Diff
   df = diff
   dc = diff --cached # Show changes that have been staged
 
-  # Fetchs
+  # Fetch
   ft = fetch
 
-  # List files
+  # List
   ls = ls-files
   ls-ign = ls-files -o -i --exclude-standard # Show files ignored by git
 
-  # Logs
+  # Log
   l = log
-  lo = l --oneline
+  l1 = l --oneline
   last = l -1 HEAD
-  lasto = lo -1 HEAD
+  last1 = lo -1 HEAD
   lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
 
-  # Merges
-  mg = merge --no-ff
+  # Merge
+  m = merge
+  ma = merge --abort
+  mc = merge --continue
+  ms = merge --skip
 
-  # Pulls
+  # Pull
   pl = pull --ff-only
 
-  # Pushs
+  # Push
   ps = push
-  pst = ps --follow-tags
+  psf = push --force
+  pst = ps --tags
   psu = !"git push -u origin $(git bn)" # Push the current branch to the remote "origin", and set it to track the upstream branch
-  psut = !"git psu --follow-tags"
-  unps = !"git push origin :$(git bn)" # Delete the remote version of the current branch
+  psut = !"git psu --tags"
+  psdel = !"git push origin :$(git bn)" # Delete the remote version of the current branch
+
+  # Prune
+  pr = prune -v
+
+  # Rebase
+  rb = rebase
+  rba = rebase --abort
+  rbc = rebase --continue
+  rbi = rebase --interactive
+  rbs = rebase --skip
 
   # Status
   st = status
-
-  visual = !gitx
-[push]
-  default = simple
-[core]
-  excludesfile = ~/.gitignore_global
-  attributesfile = ~/.gitattributes
-  editor = code
-  autocrlf = input
-[user]
-  name = Lucas Rinaldi
-  email = lucashrinaldi@gmail.com
-[init]
-	defaultBranch = main
