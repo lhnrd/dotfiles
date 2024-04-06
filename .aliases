@@ -51,7 +51,7 @@ alias path="echo $PATH | tr ':' '\n'"
 ###############################################################################
 
 # Search history - requires one input
-alias shistory='history | grep $1'
+alias shist='history | grep $1'
 
 # Gzip-enabled 'curl'
 alias gurl='curl --compressed'
@@ -97,6 +97,12 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo 
 
 # Clean global npm packages
 alias npmclean='npm ls -gp --depth=0 | awk -F/ "/node_modules/ && !/\/npm$/ {print $NF}" | xargs npm -g rm'
+
+###############################################################################
+# Process                                                                     #
+###############################################################################
+
+alias threads='ps -M -p $(pgrep $1)'
 
 ###############################################################################
 # Network                                                                     #

@@ -142,3 +142,17 @@ function codepoint() {
     echo # newline
   fi
 }
+
+function towebm() {
+  local filepath=$1
+  local filename="${filepath%.*}"
+
+  ffmpeg -i ${filepath} ${filename}.webm
+}
+
+function togif() {
+  local filepath=$1
+  local filename="${filepath%.*}"
+
+  ffmpeg -i ${filepath} -s 600x600 -pix_fmt rgb24 -f gif - | gifsicle --optimize=3 --delay=3 > ${filename}.gif
+}

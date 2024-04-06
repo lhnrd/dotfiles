@@ -1,8 +1,16 @@
 # Add `~/bin`
 export PATH="$HOME/bin:$PATH";
 
-# Add /usr/local.bin
+# Add /usr/local/bin
 export PATH="/usr/local/bin:$PATH"
+
+# Add pnpm
+export PNPM_HOME="/Users/lhrinaldi/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
 
 # Add gnubin for `coreutils`, `findutils` and `gnu-sed` packages
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
