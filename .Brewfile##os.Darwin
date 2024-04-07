@@ -10,10 +10,6 @@ brew "gnu-sed"
 # Install zsh shell
 brew "zsh"
 
-# Install a modern version of Bash.
-# brew "bash"
-# brew "bash-completion@2"
-
 # Install GnuPG to enable PGP-signing commits.
 brew "gnupg"
 
@@ -27,13 +23,12 @@ brew "ack" # grep-like source code search tool
 brew "git"
 brew "lazygit"
 brew "git-lfs"
-# brew "n"
-# brew "elixir"
 brew "rename"
 brew "tree"
-brew "ripgrep"
 brew "fd"
+brew "asdf"
 brew "yadm"
+brew "zsh-completions"
 
 # Easier documentation for bash commands
 brew "cheat"
@@ -62,13 +57,13 @@ cask "vlc"
 cask "firefox"
 cask "google-chrome"
 cask "google-drive"
-# cask "cron"
 cask "tomatobar"
 cask "1password"
 cask "lunar"
 cask "obsidian"
 cask "calibre"
 
+# cask "cron"
 # cask "docker"
 # cask "anki"
 # cask "soulseek"

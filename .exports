@@ -1,5 +1,3 @@
-# TODO: Review
-
 # Increase Bash history size. Allow 32³ entries; the default is 500.
 # export HISTSIZE='32768';
 # export HISTFILESIZE="${HISTSIZE}";
@@ -7,31 +5,16 @@
 # export HISTCONTROL='ignoreboth';
 # # Make some commands not show up in history
 # export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
-# 
-# # Enable persistent REPL history for `node`.
-# export NODE_REPL_HISTORY=~/.node_history;
-# # Allow 32³ entries; the default is 1000.
-# export NODE_REPL_HISTORY_SIZE='32768';
-# # Use sloppy mode by default, matching web browsers.
-# export NODE_REPL_MODE='sloppy';
-# 
-# # Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
+
+# Enable persistent REPL history for `node`.
+export NODE_REPL_HISTORY=~/.node_history;
+# Allow 32³ entries; the default is 1000.
+export NODE_REPL_HISTORY_SIZE='32768';
+# Use sloppy mode by default, matching web browsers.
+export NODE_REPL_MODE='sloppy';
+
+# Make Python use UTF-8 encoding for output to stdin, stdout, and stderr.
 # export PYTHONIOENCODING='UTF-8';
 # 
-# # Highlight section titles in manual pages
-# export LESS_TERMCAP_md="$ORANGE"
-# 
-# # Don’t clear the screen after quitting a manual page
-# export MANPAGER="less -X"
-# 
-# # Always enable colored `grep` output
-# export GREP_OPTIONS="--color=auto"
-# 
-# # Set the Terminal title to current directory
-# set_prompt () {
-#     BASE_PATH="${PWD##*/}"
-#     echo -ne "\033]0;$BASE_PATH\007"
-# }
-# 
-# export PROMPT_COMMAND="set_prompt;$PROMPT_COMMAND"
-# 
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X"

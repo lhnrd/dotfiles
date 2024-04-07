@@ -3,13 +3,13 @@
 system_type=$(uname -s)
 cpu_type=$(uname -m)
 
-
 ###############################################################################
 # Bootstrap system                                                            #
 ###############################################################################
 if [ "$system_type" = "Darwin" ]; then
   install_brew
   configure_macos
+  configure_node
   configure_iterm
   configure_zsh
   load_fonts
@@ -61,6 +61,12 @@ configure_zsh() {
 
   # Install oh-my-zsh
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+  # Install the spaceship theme for zsh https://github.com/denysdovhan/spaceship-prompt
+  if [ ! -d "$ZSH/custom/themes/spaceship-prompt" ]; then
+    git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH/custom/themes/spaceship-prompt"
+    ln -s "$ZSH/custom/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH/custom/themes/spaceship.zsh-theme"
+  fi
 }
 
 # -------------------------------
@@ -78,9 +84,21 @@ configure_macos() {
 # -------------------------------
 configure_iterm() {
   if [ -d "$HOME/.iterm2" ]; then
+    # TODO: Load all color schemes
     echo "Setting iTerm preference folder"
     defaults write com.googlecode.iterm2 PrefsCustomFolder "$HOME/.iterm2"
   fi
+}
+
+# -------------------------------
+# Configure Node
+# -------------------------------
+configure_node() {
+  brew install gpg gawk # Install `asdf` dependencies
+
+  asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+  asdf install nodejs latest  # Install latest Node.js version
+  asdf global nodejs latest   # Set version in `~/.tool-versions`
 }
 
 # -------------------------------
