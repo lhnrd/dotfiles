@@ -11,13 +11,6 @@ export PATH="$HOME/bin:$PATH";
 # `/usr/local/bin`
 export PATH="/usr/local/bin:$PATH"
 
-# `pnpm``path
-export PNPM_HOME="/Users/lhrinaldi/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
 # Add gnubin for `coreutils`, `findutils` and `gnu-sed` packages
 export PATH="$(brew --prefix coreutils)/libexec/gnubin:$PATH"
 export PATH="$(brew --prefix findutils)/libexec/gnubin:$PATH"
@@ -47,15 +40,18 @@ export SPACESHIP_CONFIG="$HOME/.config/zsh/spaceship.zsh"
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "eastwood" "emotty" "frisk" "geoffgarside" )
 
+# -------------------------------
+# zsh-completions
+# -------------------------------
 # 
-# To enable completions, add the following to your .zshrc:
+#To enable completions, add the following to your .zshrc:
 # 
-if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
-
-  autoload -Uz compinit
-  compinit
-fi
+# if type brew &>/dev/null; then
+#   FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+# 
+#   autoload -Uz compinit
+#   compinit
+# fi
 # 
 # You may also need to force rebuild `zcompdump`:
 # 
@@ -70,6 +66,18 @@ fi
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
+# -------------------------------
+# zsh-autosuggestions
+# -------------------------------
+# To activate the autosuggestions, add the following at the end of your .zshrc:
+# 
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# 
+# You will also need to restart your terminal for this change to take effect.
+
+# -------------------------------
+# ZSH configuration
+# -------------------------------
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
@@ -99,6 +107,10 @@ fi
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
 
+
+# -------------------------------
+# ZSH plugins
+# -------------------------------
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -106,15 +118,13 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   aliases
-  asdf
   colored-man-pages
-  fd
   fzf # Fuzzy search config
   gh
   git
-  httpie
   macos # See https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos
   npm
+  nvm
   node
   vscode
   z # Jump around
@@ -125,7 +135,6 @@ source $ZSH/oh-my-zsh.sh
 ###############################################################################
 # User configuration                                                          # 
 ###############################################################################
-
 
 export LANG='en_US.UTF-8';
 export LC_ALL='en_US.UTF-8';
@@ -148,3 +157,30 @@ for file in ~/.{aliases,functions}; do
   [ -r "$file" ] && [ -f "$file" ] && source "$file"
 done
 unset file
+
+# -------------------------------
+# tabtab (added by `pnpm install-completion zsh` command)
+# -------------------------------
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+
+# -------------------------------
+# nvm
+# -------------------------------
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# -------------------------------
+# pnpm
+# -------------------------------
+export PNPM_HOME="/Users/lhrinaldi/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# -------------------------------
+# yvm
+# -------------------------------
+export YVM_DIR=/Users/lhrinaldi/.yvm
+[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh

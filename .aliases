@@ -75,6 +75,17 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 
+# Quickly access dotfiles
+alias dotals="${=EDITOR} ~/.aliases"
+alias dotboot="${=EDITOR} ~/.config/yadm/bootstrap"
+alias dotbrew="${=EDITOR} ~/.Brewfile"
+alias dotexp="${=EDITOR} ~/.exports"
+alias dotfun="${=EDITOR} ~/.functions"
+alias dotmacos="${=EDITOR} ~/.macos"
+alias dotrc="${=EDITOR} ~/.zshrc"
+
+# Command-line GUI tool to handle git operations
+alias lg="lazygit"
 
 ###############################################################################
 # Cleanup                                                                     #
@@ -120,4 +131,3 @@ alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.ar
 
 # list open internet files and its ports
 alias listport="lsof -i"
-alias lg="lazygit"
