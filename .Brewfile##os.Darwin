@@ -27,6 +27,7 @@ brew "rename"
 brew "tree"
 brew "fd"
 # brew "asdf"
+brew "fzf"
 brew "yadm"
 
 # Zsh custom plugins
@@ -39,13 +40,13 @@ brew "tldr"
 
 # Network
 brew "httpie" # Simple HTTP client
-brew "dog" # DNS client
 
 # Install casks
 cask "raycast"
 cask "slack"
 cask "visual-studio-code"
 cask "notion"
+cask "notion-calendar"
 cask "shifty"
 cask "numi"
 cask "discord"
@@ -71,11 +72,9 @@ cask "iina"
 cask "jordanbaird-ice"
 cask "stats"
 
-# cask "cron"
 # cask "docker"
 # cask "anki"
 # cask "soulseek"
 # cask "pocket-casts"
 # cask "dwarf-fortress-lmp"
-# cask "kindle"
 # cask "rekordbox"

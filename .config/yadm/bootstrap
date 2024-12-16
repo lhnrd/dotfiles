@@ -3,18 +3,6 @@
 system_type=$(uname -s)
 cpu_type=$(uname -m)
 
-###############################################################################
-# Bootstrap system                                                            #
-###############################################################################
-if [ "$system_type" = "Darwin" ]; then
-  install_brew
-  configure_macos
-  configure_node
-  configure_iterm
-  configure_zsh
-  load_fonts
-fi
-
 # -------------------------------
 # Install Homebrew and Brewfile bundle (formulae and casks)
 # -------------------------------
@@ -111,3 +99,15 @@ load_fonts() {
     fd . ~/.fonts -e ttf | xargs -I _ cp _ "$HOME/Library/Fonts"
   fi
 }
+
+###############################################################################
+# Bootstrap system                                                            #
+###############################################################################
+if [ "$system_type" = "Darwin" ]; then
+  install_brew
+  configure_macos
+  configure_node
+  configure_iterm
+  configure_zsh
+  load_fonts
+fi
