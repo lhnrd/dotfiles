@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title Capture Thinkers Work
+# @raycast.mode fullOutput
+
+# Optional parameters:
+# @raycast.icon 🧠
+# @raycast.argument1 { "type": "text", "placeholder": "Input text", "optional": false, "percentEncoded": true}
+
+# Documentation:
+# @raycast.description Run fabric capture_thinkers_work on the input text
+# @raycast.author Daniel Miessler
+# @raycast.authorURL https://github.com/danielmiessler
+
+# Set PATH to include common locations and $HOME/go/bin
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$HOME/go/bin:$PATH"
+
+# Use the PATH to find and execute fabric
+COMMAND=$(command -v fabric || command -v fabric-ai) || (echo "Error: Neither 'fabric' nor 'fabric-ai' is installed." && exit 1)
+$COMMAND -sp capture_thinkers_work "${1}"

@@ -173,14 +173,13 @@ export NVM_DIR="$HOME/.nvm"
 # -------------------------------
 # pnpm
 # -------------------------------
-export PNPM_HOME="/Users/lhrinaldi/Library/pnpm"
+export PNPM_HOME="${HOME}/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 # -------------------------------
-# yvm
+# windsurf
 # -------------------------------
-export YVM_DIR=/Users/lhrinaldi/.yvm
-[ -r $YVM_DIR/yvm.sh ] && . $YVM_DIR/yvm.sh
+export PATH="${HOME}/.codeium/windsurf/bin:$PATH"
