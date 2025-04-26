@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title Extract Article Wisdom
+# @raycast.mode silent
+
+# Optional parameters:
+# @raycast.icon 🧠
+# @raycast.argument1 { "type": "text", "placeholder": "Article URL", "optional": false, "percentEncoded": true}
+# @raycast.argument2 { "type": "text", "placeholder": "File name", "optional": true}
+
+# Documentation:
+# @raycast.description Run fabric extract_wisdom on input text
+# @raycast.author Lucas Rinaldi
+# @raycast.authorURL https://github.com/lhnrd
+
+COMMAND=$(command -v fabric || command -v fabric-ai) || (echo "Error: Neither 'fabric' nor 'fabric-ai' is installed." && exit 1)
+EDITOR="code"
+OBSIDIAN_VAULT="${HOME}/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian/010 Notes/013 Highlights/fabric"
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+PATTERN_NAME="extract_wisdom"
+
+eval "
+$PATTERN_NAME() {
+    local title=\$1
+    local date_stamp=\$(date +'%Y-%m-%d')
+    local output_path=\"\$OBSIDIAN_VAULT/\${date_stamp} \${title}.md\"
+
+    # Check if a title was provided
+    if [ -n \"\$title\" ]; then
+        # If a title is provided, use the output path
+        $COMMAND --pattern \"$PATTERN_NAME\" -o \"\$output_path\"
+        $EDITOR \"\$output_path\"
+    else
+        # If no title is provided, use --copy
+        $COMMAND --pattern \"$PATTERN_NAME\" --copy
+        echo \"$PATTERN_NAME pasted to your clipboard.\"
+    fi
+
+}
+"
+
+DECODED_ARG=$(printf '%b' "${1//%/\\x}")
+
+$COMMAND -u "${DECODED_ARG}" | $PATTERN_NAME "${2}"
+
+
+
+
+
+
+
