@@ -13,8 +13,12 @@ fi
 
 alias h='cd ~' # home
 alias r='cd /' # root
-alias d="cd ~/Desktop"
-alias p="cd ~/Projects"
+alias d='cd ~/Desktop'
+alias dc='cd ~/Documents'
+alias dl='cd ~/Downloads'
+alias p='cd ~/Projects'
+alias drive='cd $GOOGLE_DRIVE'
+alias vault='cd $OBSIDIAN_VAULT'
 
 
 ###############################################################################
@@ -22,23 +26,23 @@ alias p="cd ~/Projects"
 ###############################################################################
 
 # Always use color output for `l`
-alias l="ls ${colorflag}"
+alias l='ls ${colorflag}'
 
 # List all files colorized in long format
-alias ll="ls -lhF ${colorflag}"
+alias ll='ls -lhF ${colorflag}'
 
 # List all files colorized in long format, including dotfiles
-alias la="ls -lhaF ${colorflag}"
+alias la='ls -lhaF ${colorflag}'
 
 # List only directories
-alias ld="ls -lahd ${colorflag} */"
-alias lad="ls -lhaF ${colorflag} | grep --color=never '^d'"
+alias ld='ls -lahd ${colorflag} */'
+alias lad='ls -lhaF ${colorflag} | grep --color=never '^d''
 
 # List current directory
-alias lc="ls -lhd $(pwd)"
+alias lc='ls -lhd $(pwd)'
 
 # list paths include in environment variable PATH
-alias path="echo $PATH | tr ':' '\n'"
+alias path="echo \$PATH | tr ':' '\n'"
 
 
 ###############################################################################
@@ -76,16 +80,17 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 
 # Quickly access dotfiles
-alias dotals="${=EDITOR} ~/.aliases"
-alias dotbrew="${=EDITOR} ~/.Brewfile"
-alias dotexp="${=EDITOR} ~/.exports"
-alias dotfun="${=EDITOR} ~/.functions"
-alias dotmacos="${=EDITOR} ~/.macos"
-alias dotrc="${=EDITOR} ~/.zshrc"
+alias dotals='${=EDITOR} ~/.aliases'
+alias dotbrew='${=EDITOR} ~/.Brewfile'
+alias dotexp='${=EDITOR} ~/.exports'
+alias dotfun='${=EDITOR} ~/.functions'
+alias dotmacos='${=EDITOR} ~/.macos'
+alias dotrc='${=EDITOR} ~/.zshrc'
 
-# Quickly edit utilities
-alias dotyadm="${=EDITOR} ~/.config/yadm"
-alias dotfabric="${=EDITOR} ~/.config/fabric"
+# Quickly access configs
+alias dotconfig='${=EDITOR} ~/.config'
+alias dotyadm='${=EDITOR} ~/.config/yadm'
+alias dotfabric='${=EDITOR} ~/.config/fabric'
 
 # Command-line GUI tool to handle git operations
 alias lg="lazygit"
@@ -142,8 +147,7 @@ alias listport="lsof -i"
 alias fabric='fabric-ai'
 
 # Define the base directory for Obsidian notes
-
-obsidian_base="/Users/lhrinaldi/Library/Mobile Documents/iCloud~md~obsidian/Documents/Obsidian/010 Notes/013 Highlights/fabric"
+FABRIC_FOLDER="$OBSIDIAN_VAULT/010 Notes/013 Highlights/fabric"
 
 # Loop through all files in the ~/.config/fabric/patterns directory
 for pattern_file in ~/.config/fabric/patterns/*; do
@@ -158,7 +162,7 @@ for pattern_file in ~/.config/fabric/patterns/*; do
     $pattern_name() {
         local title=\$1
         local date_stamp=\$(date +'%Y-%m-%d')
-        local output_path=\"\$obsidian_base/\${date_stamp} \${title}.md\"
+        local output_path=\"$FABRIC_FOLDER/\${date_stamp} \${title}.md\"
 
         # Check if a title was provided
         if [ -n \"\$title\" ]; then

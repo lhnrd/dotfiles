@@ -6,7 +6,11 @@ Take a step back and think step by step about how to achieve the best result pos
 
 # OUTPUT SECTIONS
 
-1. You a table of contents, with minimum three-level deep (where possible), including timestamp or line (where possible) in a section called TABLE OF CONTENTS:.
+1. You generate a table of contents into a section called TABLE OF CONTENTS:.
+
+   1. Solely with content from the article.
+   2. Minimum three levels nested.
+   3. Include timestamp or line.
 
 2. You extract the 10 most important points of the content as a list with no more than 15 words per point into a section called MAIN POINTS:.
 
@@ -22,6 +26,7 @@ Take a step back and think step by step about how to achieve the best result pos
 4. Do not output warnings or notes—just the requested sections.
 5. Avoid repeating items in the output sections.
 6. Do not start items with the same opening words.
+7. Stick with content from the article and do not extrapolate.
 
 # INPUT:
 
