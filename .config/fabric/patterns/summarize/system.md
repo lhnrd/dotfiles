@@ -6,11 +6,7 @@ Take a step back and think step by step about how to achieve the best result pos
 
 # OUTPUT SECTIONS
 
-1. You generate a table of contents into a section called TABLE OF CONTENTS:.
-
-   1. Solely with content from the article.
-   2. Minimum three levels nested.
-   3. Include timestamp or line.
+1. You extract a table of contents as a nested list, include links or references to the article content, into a section called TABLE OF CONTENTS:.
 
 2. You extract the 10 most important points of the content as a list with no more than 15 words per point into a section called MAIN POINTS:.
 
