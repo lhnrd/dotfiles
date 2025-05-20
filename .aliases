@@ -89,6 +89,7 @@ alias dotrc='${=EDITOR} ~/.zshrc'
 
 # Quickly access configs
 alias dotconfig='${=EDITOR} ~/.config'
+alias dotscripts='${=EDITOR} ~/.scripts'
 alias dotyadm='${=EDITOR} ~/.config/yadm'
 alias dotfabric='${=EDITOR} ~/.config/fabric'
 

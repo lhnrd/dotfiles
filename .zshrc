@@ -131,6 +131,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source $HOME/.scripts/fzf-git.sh
 
 ###############################################################################
 # User configuration                                                          # 
