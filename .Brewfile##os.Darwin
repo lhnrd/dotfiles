@@ -40,6 +40,7 @@ brew "cheat"
 brew "httpie" # Simple HTTP client
 
 # Install casks
+cask "brave-browser"
 cask "raycast"
 cask "slack"
 cask "visual-studio-code"
@@ -57,7 +58,7 @@ cask "iterm2"
 cask "zoom"
 cask "selfcontrol"
 cask "vlc"
-cask "firefox"
+# cask "firefox"
 cask "google-chrome"
 cask "google-drive"
 cask "1password"
